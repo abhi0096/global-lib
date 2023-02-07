@@ -9,7 +9,7 @@ pipeline {
 stages {
     stage('git clone') {
        steps {
-           git Url: '${pipelineParams.gitUrl}', branch: '${pipelineParams.branch}'
+           git url: '${pipelineParams.url}', branch: '${pipelineParams.branch}'
         }
     }
     stage('Build the code'){
