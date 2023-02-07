@@ -9,7 +9,8 @@ pipeline {
 stages {
     stage('git clone') {
        steps {
-           git url: '${pipelineParams.url}', branch: '${pipelineParams.branch}'
+          // git url: '${pipelineParams.url}', branch: '${pipelineParams.branch}'
+           git branch: '${pipelineParams.branch}', credentialsId: 'Jenkins-git-cred-new', url: '${pipelineParams.url}'
         }
     }
     stage('Build the code'){
