@@ -1,4 +1,4 @@
-def call(Map pipelineParams = [:]) {
+def call(Map config) {
 
 pipeline {
      agent any
@@ -11,7 +11,7 @@ stages {
        steps {
           // git url: '${pipelineParams.url}', branch: '${pipelineParams.branch}'
            //git branch: '${pipelineParams.branch}', credentialsId: 'Jenkins-git-cred-new', url: '${pipelineParams.url}'
-           git branch: '${pipelineParams.branch}', credentialsId: 'Jenkins-git-cred-new', url: 'https://github.com/abhi0096/RavdyJavaWebApp.git'
+            git branch: ${config.branch} credentialsId: 'Jenkins-git-cred-new', url: ${config.url}
         }
     }
     stage('Build the code'){
