@@ -6,15 +6,19 @@ def call(Map config) {
         stages{
             stage('git-clone'){
                 steps{
+                    step{
                     def checkoutStep = {
                         git url: "${config.repoUrl}", branch: "${config.branch}", credentialsId: "${config.credentialsId}"
+                    }
                 }
             }
         }
             stage('build'){
                 steps{
+                    step{
                     def buildStep = {
                           sh "maven clean install"
+                        }
                     }
                 }
             }
