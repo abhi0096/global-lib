@@ -11,7 +11,7 @@ pipeline {
 stages {
     stage('git-clone') {
        steps {
-            def checkoutStep = {
+            def step = {
                 git url: "${config.repoUrl}", branch: "${config.branch}", credentialsId: "${config.credentialsId}"
                 }
           // git url: '${pipelineParams.url}', branch: '${pipelineParams.branch}'
@@ -26,6 +26,8 @@ stages {
     }
 }
 }
+     def pipelineSteps = [Step, buildStep]
+     return pipelineSteps
 }
 
 // #!/usr/bin/env groovy
