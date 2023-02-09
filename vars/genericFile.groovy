@@ -1,32 +1,62 @@
 #!/usr/bin/env groovy
 
 def call(Map config) {
-    pipeline{
-        agent any
-        stages{
-            stage('git-clone'){
-                steps{
-                    step{
-                    def checkoutStep = {
-                        git url: "${config.repoUrl}", branch: "${config.branch}", credentialsId: "${config.credentialsId}"
-                    }
+
+pipeline {
+     agent any
+    //  options {
+    //     copyArtifactPermission('rollback');
+    // }
+
+stages {
+    stage('git-clone') {
+       steps {
+            def checkoutStep = {
+                git url: "${config.repoUrl}", branch: "${config.branch}", credentialsId: "${config.credentialsId}"
                 }
-            }
-        }
-            stage('build'){
-                steps{
-                    step{
-                    def buildStep = {
-                          sh "maven clean install"
-                        }
-                    }
-                }
-            }
+          // git url: '${pipelineParams.url}', branch: '${pipelineParams.branch}'
+           //git branch: '${pipelineParams.branch}', credentialsId: 'Jenkins-git-cred-new', url: '${pipelineParams.url}'
+            //git branch: '${config.branch}', credentialsId: 'Jenkins-git-cred-new', url: '${config.url}'
         }
     }
-    def pipelineSteps = [checkoutStep, buildStep]
-    return pipelineSteps
+    stage('Build the code'){
+        steps{
+            sh 'mvn clean install'
+        }
+    }
 }
+}
+}
+
+// #!/usr/bin/env groovy
+
+// def call(Map config) {
+//     pipeline{
+//         agent any
+//         stages{
+//             stage('git-clone'){
+//                 steps{
+//                     step{
+//                     def checkoutStep = {
+//                         git url: "${config.repoUrl}", branch: "${config.branch}", credentialsId: "${config.credentialsId}"
+//                     }
+//                 }
+//             }
+//         }
+//             stage('build'){
+//                 steps{
+//                     step{
+//                     def buildStep = {
+//                           sh "maven clean install"
+//                         }
+//                     }
+//                 }
+//             }
+//         }
+//     }
+//     def pipelineSteps = [checkoutStep, buildStep]
+//     return pipelineSteps
+// }
     
 
 // vars
