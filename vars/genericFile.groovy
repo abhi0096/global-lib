@@ -20,7 +20,10 @@ def call(Map config) {
             }
         }
     }
+    def pipelineSteps = [checkoutStep, buildStep]
+    return pipelineSteps
 }
+    
 
 // vars
 // | --- welcomeJob.groovy
