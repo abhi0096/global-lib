@@ -17,7 +17,7 @@ stages {
     stage('Deploying War') {
         steps{
             sshagent(["${config.pemname}"]) {
-		    steps{
+		    step{
                 sh "scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/"${config.projectName}"/target/*.war "${config.serverUsername}"@"${config.server}":~/"${config.warName}".war"
             	}
 	    }
