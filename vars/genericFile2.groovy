@@ -99,9 +99,6 @@ pipeline {
 	// 			emailext attachLog: true, body: '', subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS', to: 'abhi.khandelwal@rezo.ai'
 	// 		}
     // }
-                }
-            }
-        }
     }
 }
 //===================================================
