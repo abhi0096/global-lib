@@ -48,7 +48,7 @@ pipeline {
         stage('Deploy war') {
             steps {
                 script{
-                sshagent(['"${config.pemName}"']) {
+                sshagent(["${config.pemName}"]) {
                     sh "scp -r -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/"${config.projectName}"/webapp/target/*.war "${config.user}"@"${config.server}":~/"${config.warName}".war"
                 }
             }
