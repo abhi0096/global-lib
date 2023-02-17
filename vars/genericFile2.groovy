@@ -59,7 +59,7 @@ pipeline {
             
             steps {
                 script{
-               sshagent(['"${config.pemName}"']) {
+               sshagent(["${config.pemName}"]) {
                    sh "ssh -o StrictHostKeyChecking=no "${config.user}"@"${config.server}" sudo rm -f /var/lib/tomcat9/webapps/"${config.warName}".war"
                    sh "ssh -o StrictHostKeyChecking=no "${config.user}"@"${config.server}" sudo rm -rf /var/lib/tomcat9/webapps/"${config.warName}""
                    sh "ssh -o StrictHostKeyChecking=no "${config.user}"@"${config.server}" sudo cp /home/"${config.user}"/"${config.warName}".war /var/lib/tomcat9/webapps/"
@@ -85,13 +85,12 @@ pipeline {
             
             steps{
                 script{
-                   sshagent(['pem1']) {
+                   sshagent(["${config.pemName}"]) {
                        sh "ssh -o StrictHostKeyChecking=no  "${config.user}"@"${config.server}" sudo service tomcat9 restart"
                         }
                     }
                 }
             }
-        
         }
     
     // post {
