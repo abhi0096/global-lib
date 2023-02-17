@@ -49,7 +49,7 @@ pipeline {
             steps {
                 script{
                 sshagent(['"${config.pemName}"']) {
-                    sh "scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/"${config.projectName}"/webapp/target/*.war "${config.user}"@"${config.server}":~/"${config.warName}".war"
+                    sh "scp -r -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/"${config.projectName}"/webapp/target/*.war "${config.user}"@"${config.server}":~/"${config.warName}".war"
                 }
             }
         }
