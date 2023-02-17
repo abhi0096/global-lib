@@ -69,15 +69,15 @@ pipeline {
         }    
     }
         
-        stage ('Copying config'){
-            steps {
-                script{
-               sshagent(['"${config.pemName}"']) {
-                  sh "ssh -o StrictHostKeyChecking=no "${config.user}"@"${config.server}" sudo cp /home/"${config.user}"/Config.properties /var/lib/tomcat9/webapps/"${config.warName}"/WEB-INF/classes/properties"
-                }
-            }
-        }
-    }
+//         stage ('Copying config'){
+//             steps {
+//                 script{
+//                sshagent(['"${config.pemName}"']) {
+//                   sh "ssh -o StrictHostKeyChecking=no "${config.user}"@"${config.server}" sudo cp /home/"${config.user}"/Config.properties /var/lib/tomcat9/webapps/"${config.warName}"/WEB-INF/classes/properties"
+//                 }
+//             }
+//         }
+//     }
 
         
         
